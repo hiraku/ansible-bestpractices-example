@@ -1,0 +1,9 @@
+---
+- hosts: remote
+  roles:
+    - ruby-source
+  serial: 1
+- hosts: remote
+  roles:
+    - build-dep-ruby
+    - build-ruby

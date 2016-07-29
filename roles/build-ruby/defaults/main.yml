@@ -1,0 +1,3 @@
+ruby_prefix: /opt/ruby/{{ruby_ver}}
+ruby_basename: ruby-{{ruby_ver}}
+ruby_file: "{{ruby_basename}}.tar.gz"

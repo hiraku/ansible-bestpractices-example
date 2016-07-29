@@ -1,0 +1,20 @@
+---
+- command: mktemp -d
+  register: temp_dir
+- unarchive:
+    src: tmp/{{ruby_file}}
+    dest: "{{ temp_dir.stdout }}/"
+- command: ./configure --prefix={{ruby_prefix}}
+  args:
+    chdir: "{{ temp_dir.stdout }}/{{ ruby_basename }}/"
+- command: make
+  args:
+    chdir: "{{ temp_dir.stdout }}/{{ ruby_basename }}/"
+- command: make install
+  become: true
+  args:
+    chdir: "{{ temp_dir.stdout }}/{{ ruby_basename }}/"
+- name: remove temp directory
+  file:
+    path: "{{ temp_dir.stdout }}"
+    state: absent

@@ -1,0 +1,6 @@
+---
+- stat: path={{ ruby_prefix }}/bin/ruby
+  register: stat_result
+- name: build and install ruby
+  include: build.yml
+  when: not stat_result.stat.exists

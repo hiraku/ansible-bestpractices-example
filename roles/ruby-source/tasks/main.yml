@@ -1,0 +1,12 @@
+---
+- name: create tmp directory
+  local_action:
+    module: file
+    path: tmp/
+    state: directory
+- name: fetch ruby source
+  local_action:
+    module: get_url
+    url: "{{ ruby_src_url }}"
+    sha256sum: "{{ ruby_src_sha256 }}"
+    dest: tmp/ruby-{{ ruby_ver }}.tar.gz
